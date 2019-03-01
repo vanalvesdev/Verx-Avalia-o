@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Order(5)
 public class AvaliacaoVerxExceptionHandler {
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ResponseEntity handleEmptyResultDataAccessException() {
 		return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);

@@ -1,7 +1,9 @@
 package com.van.avaliacaoverx.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +39,8 @@ public class ClienteController {
 	@ApiOperation(value="Salva um cliente no banco de dados")
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente criarCliente(@Valid @RequestBody Cliente cliente) {
-		return clienteService.save(cliente);
+	public Cliente criarCliente(@Valid @RequestBody Cliente cliente, HttpServletRequest request) {
+		return clienteService.save(cliente, obterIp(request));
 	}
 	
 	@ApiOperation(value="Atualiza as informações de um cliente existente")
@@ -60,6 +62,10 @@ public class ClienteController {
 	@ResponseStatus(HttpStatus.OK)
 	public Cliente buscarCliente(@PathVariable Long id) {
 		return clienteService.find(id);
+	}
+	
+	private String obterIp(HttpServletRequest request) {
+		return Optional.ofNullable(request.getHeader("X-FORWARDED-FOR")).orElse(request.getRemoteAddr());
 	}
 	
 }
