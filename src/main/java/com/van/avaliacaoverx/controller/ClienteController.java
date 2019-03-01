@@ -1,5 +1,7 @@
 package com.van.avaliacaoverx.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +30,22 @@ public class ClienteController {
 	@ApiOperation(value="Retorna uma lista de clientes")
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public void buscarTodosClientes() {
-		clienteService.all();
+	public List<Cliente> buscarTodosClientes() {
+		return clienteService.all();
 	}
 
 	@ApiOperation(value="Salva um cliente no banco de dados")
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void criarCliente(@Valid @RequestBody Cliente cliente) {
-		clienteService.save(cliente);
+	public Cliente criarCliente(@Valid @RequestBody Cliente cliente) {
+		return clienteService.save(cliente);
 	}
 	
 	@ApiOperation(value="Atualiza as informações de um cliente existente")
 	@PostMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void atualizarCliente(@Valid @RequestBody Cliente cliente, @PathVariable Long id) {
-		
+	public Cliente atualizarCliente(@Valid @RequestBody Cliente cliente, @PathVariable Long id) {
+		return clienteService.update(cliente, id);
 	}
 	
 	@ApiOperation(value="Remove um cliente do banco de dados")
@@ -56,8 +58,8 @@ public class ClienteController {
 	@ApiOperation(value="Recupera as informações de um cliente especifico")
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public void buscarCliente(@PathVariable Long id) {
-		clienteService.find(id);
+	public Cliente buscarCliente(@PathVariable Long id) {
+		return clienteService.find(id);
 	}
 	
 }
