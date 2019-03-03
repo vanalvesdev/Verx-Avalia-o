@@ -25,7 +25,7 @@ Ao executar a aplicação e acessar o enpoint /swagger-ui.html você encontrará
 Também poderá consumir todos os endpoints sem a necessidade da criação de um client.
 
 ## Produção
-A aplicação utiliza o banco de dados H2 que executa em memoria, o que significa que ao para a aplicação os dados serão perdidos.
+A aplicação utiliza o banco de dados H2 que executa em memoria, o que significa que ao parar a aplicação os dados serão perdidos.
 Para o ambiente de produção já está previsto e preparado a integração com um banco de dados MySQL, e para utiliza-lo serão necessarios alguns passos.
 1. Configurar as variaveis de ambiente DATASOURCE_URL, DATASOURCE_USERNAME e DATASOURCE_PASSWORD com as informações referentes ao banco MySQL que queira se conectar
 1. Informar a aplicação que deve executar preparada para o ambiente de produção, para isso é necessario passar o parametro JVM informando o perfil de prod.
